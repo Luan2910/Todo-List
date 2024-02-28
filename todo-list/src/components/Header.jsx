@@ -1,11 +1,13 @@
 import './Header.css'
 
-export default function Header() {
+const Header = () => {
   return (
     <>
-      <div className='header'>
+      <div className='Header'>
         <h1>To do List</h1>
       </div>
     </>
   )
 }
+
+export default Header

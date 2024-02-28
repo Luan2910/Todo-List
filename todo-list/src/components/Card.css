@@ -1,0 +1,11 @@
+.Card {
+    
+}
+
+.complete {
+    background-color: lightgreen;
+}
+
+.remove {
+    background-color: lightcoral;
+}

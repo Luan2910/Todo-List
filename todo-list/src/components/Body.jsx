@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Card from "./Card"
+import CardForm from './CardForm';
 
 export default function Body() {
 
@@ -33,9 +34,12 @@ export default function Body() {
 
     return (
         <div className="Body">
-            {cards.map(cards => (
-                <Card key={cards.id} description={cards.description}/>
-            ))}
+            <div className="card-list">
+                {cards.map(cards => (
+                    <Card key={cards.id} description={cards.description}/>
+                ))} 
+            </div>
+            <CardForm />
         </div>
     )
 }
