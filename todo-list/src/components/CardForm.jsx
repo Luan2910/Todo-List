@@ -1,14 +1,15 @@
 import { useState} from 'react'
 
-const CardForm = () => {
+const CardForm = ({addCard}) => {
 
-  const [value, setValue] = useState("");
+  const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if(!value || !category) return;
-    setValue("");
+    if(!description || !category) return;
+    addCard(description, category);
+    setDescription("");
     setCategory("");
   }
 
@@ -19,8 +20,8 @@ const CardForm = () => {
             <input 
               type="text" 
               placeholder='Digite o título da tarefa' 
-              value={value}
-              onChange={(e) => setValue(e.target.value)}
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
             />
             <select value={category} onChange={(e) => setCategory(e.target.value)} name="" id="">
                 <option value="">Seleciona uma categoria</option>
