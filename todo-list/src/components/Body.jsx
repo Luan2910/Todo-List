@@ -51,11 +51,23 @@ export default function Body() {
         setCards(newCards);
     };
 
+    const removeCard = (id) => {
+        const newCards = [...cards];
+        const filteredCards = newCards.filter((card) => card.id !== id ? card : null);
+        setCards(filteredCards);
+    }
+
+    const completeCard = (id) => {
+        const newCards = [...cards];
+        newCards.map((card) => card.id === id ? card.done = !card.done : card)
+        setCards(newCards);
+    }
+
     return (
         <div className="Body container">
             <div className="card-list">
                 {cards.map(cards => (
-                    <Card key={cards.id} cards={cards}/>
+                    <Card key={cards.id} cards={cards} removeCard={removeCard} completeCard={completeCard}/>
                 ))} 
             </div>
             <CardForm addCard={addCard}/>
