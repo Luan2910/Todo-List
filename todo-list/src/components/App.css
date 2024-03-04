@@ -8,6 +8,10 @@
     justify-content: start;
 }
 
+h2 {
+    font-size: 1.5rem;
+}
+
 button {
     background-color: rgb(115, 115, 246);
     color: #fff;
@@ -31,7 +35,6 @@ input, select {
     margin-bottom: 10px;
     border: 1px solid #DDD;
     border-radius: 3px;
-    width: 50%;
-    height: 100%;
+    width: 100%;
     margin-right: 10px;
 }

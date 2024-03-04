@@ -5,7 +5,7 @@ const Card = ({cards, removeCard, completeCard}) => {
 
     return (
         <div className="Card" >
-            <div className='content' style={{textDecoration: cards.done ? "line-through" : ""}}>
+            <div className={`content ${cards.done ? 'completed': ""}`} >
                 <div className="description">
                     {cards.description}
                 </div>
@@ -14,8 +14,8 @@ const Card = ({cards, removeCard, completeCard}) => {
                 </div>
             </div>
             <div className='buttons'>
-                <button className='remove' onClick={() => removeCard(cards.id)}>x</button>
-                <button className='complete' onClick={() => completeCard(cards.id)}>complete</button>
+                <button className='remove' onClick={() => removeCard(cards.id)}>X</button>
+                <button className='complete' onClick={() => completeCard(cards.id)}>check</button>
             </div>
         </div>
     );

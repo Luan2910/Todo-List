@@ -1,0 +1,16 @@
+.Filter {
+
+}
+
+.filter-options {
+    display: flex;
+    justify-content: space-between;
+    gap: 3rem;
+}
+.filter-options div {
+    flex: 1 1 0
+}
+
+.Filter button {
+    margin-right: 1rem;
+}

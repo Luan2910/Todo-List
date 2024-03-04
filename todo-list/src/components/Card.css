@@ -11,6 +11,7 @@
     align-items:start;
     width: 200px;
     height: 200px;
+    position: relative;
 }
 
 h1 {
@@ -19,6 +20,10 @@ h1 {
 
 .content {
     min-height: 150px;
+}
+
+.completed {
+    text-decoration: line-through;
 }
 
 .buttons {
@@ -33,5 +38,10 @@ h1 {
 }
 
 .remove {
-    background-color: lightcoral;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: none;
+    color: #000;
+    font-weight: bold;
 }
