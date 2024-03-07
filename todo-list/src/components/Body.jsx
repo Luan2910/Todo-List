@@ -4,39 +4,9 @@ import CardForm from './CardForm';
 import Search from './Search';
 import './Body.css'
 import Filter from './Filter';
-
-const cardList = [
-    {
-        id: 1,
-        description: "Fazer compras",
-        category: "Pessoal",
-        done: false,
-    },
-    {
-        id: 2,
-        description: "Limpar a casa",
-        category: "Pessoal",
-        done: false,
-    },
-    {
-        id: 3,
-        description: "Academia",
-        category: "Trabalho",
-        done: false,
-    },
-    {
-        id: 4,
-        description: "Passear com o cachorro",
-        category: "Trabalho",
-        done: false,
-    },
-    {
-        id: 5,
-        description: "Cuidar das plantas",
-        category: "Trabalho",
-        done: false,
-    }
-]
+import { CARD_LIST } from '../data/cards';
+ 
+const cardList = CARD_LIST;
 
 export default function Body() {
 
@@ -66,6 +36,22 @@ export default function Body() {
         setCards(newCards);
     }
 
+    function searchCards (cards, search) {
+        const newCards = cards.filter((card) => card.description.toLowerCase().includes(search.toLowerCase())); 
+        return newCards;
+    }
+    function filterCards (cards, type, filter) {
+        var newCards;
+        if(type === 'order'){
+            newCards = cards.sort((a,b) => filter === "Asc" ? a.description.localeCompare(b.description) : b.description.localeCompare(a.description))//Order (Asc/Desc)
+        }else if(type === 'complete'){
+            newCards = cards.filter((card) => filter === "All" ? true : filter === "Done" ? card.done : !card.done) //Filter by Card done
+        }else {
+            newCards = cards;
+        }
+        return newCards;
+    }
+
     const [search, setSearch] = useState("")
     const [filter, setFilter] = useState("All");
     const [order, setOrder] = useState("Asc");
@@ -75,10 +61,7 @@ export default function Body() {
             <Filter filter={filter} setFilter={setFilter} setOrder={setOrder}/>
             <Search search={search} setSearch={setSearch}/>
             <div className="card-list">
-                {cards
-                .filter((card) => filter === "All" ? true : filter === "Done" ? card.done : !card.done) //Filter by Card done
-                .filter((card) => card.description.toLowerCase().includes(search.toLowerCase())) //Search by Card description
-                .sort((a,b) => order === "Asc" ? a.description.localeCompare(b.description) : b.description.localeCompare(a.description))//Order (Asc/Desc)
+                {filterCards(filterCards(searchCards(cards, search), 'order', order), 'complete', filter)
                 .map(cards => (
                     <Card key={cards.id} cards={cards} removeCard={removeCard} completeCard={completeCard}/>
                 ))} 

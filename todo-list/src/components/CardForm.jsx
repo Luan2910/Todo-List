@@ -1,9 +1,12 @@
 import { useState} from 'react'
+import { CATEGORY_LIST } from '../data/categories'; 
 
 const CardForm = ({addCard}) => {
 
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
+
+  const categories = CATEGORY_LIST;
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -25,9 +28,9 @@ const CardForm = ({addCard}) => {
             />
             <select value={category} onChange={(e) => setCategory(e.target.value)} name="" id="">
                 <option value="">Seleciona uma categoria</option>
-                <option value="Estudos">Estudos</option>
-                <option value="Pessoal">Pessoal</option>
-                <option value="Trabalho">Trabalho</option>
+                {categories.map(category => (
+                  <option key={category} value={category}>{category}</option>
+                ))}
             </select>
             <button type='submit'>Salvar tarefa</button>
         </form>
